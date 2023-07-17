@@ -1,0 +1,47 @@
+<template>
+  <div class="page color-red" data-name="lists">
+    <div class="navbar">
+      <div class="navbar-bg"></div>
+      <div class="navbar-inner sliding">
+        <div class="left">
+          <a href="#" class="link back">
+            <i class="icon icon-back"></i>
+            <span class="if-not-md">Back</span>
+          </a>
+        </div>
+        <div class="title"> Title </div>
+      </div>
+    </div>
+    <div class="page-content">
+      <div class="block-title">About Rifqi</div>
+      <div class="block" id="contents">
+
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+
+  export default () => {
+
+    fetch('https://jsonplaceholder.typicode.com/todos')
+      .then(response => response.json())
+      .then((json) => {
+        var html = '';
+        json.map((item,index) => {
+           html += '<div class="card">'+
+            '<div class="card-header">'+item.completed+'</div>'+
+            '<div class="card-content">'+item.title+
+            '</div>'+
+            '<div class="card-footer">Footer</div>'+
+          '</div>';
+        })
+        document.getElementById("contents").innerHTML = html;
+      })
+
+    return $render;
+  };
+
+
+
+</script>
